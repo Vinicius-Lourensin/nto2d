@@ -1,0 +1,652 @@
+/* ============================================
+   NARUTO 2D - Landing Page
+   Tema ninja inspirado em Naruto
+   ============================================ */
+
+/* Variáveis */
+:root {
+    --laranja-chakra: #ff6a00;
+    --verde-ninja: #2e8b57;
+    --preto: #0a0a0a;
+    --cinza-escuro: #1a1a1a;
+    --cinza-medio: #2d2d2d;
+    --branco: #ffffff;
+    --discord: #5865F2;
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+    color: var(--branco);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Fundo Konoha - rola junto com a página */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    background: url("https://wallpapers.com/images/hd/konoha-kwldytpkkc1uo4qb.jpg") center top / cover no-repeat;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.8) 50%, rgba(10, 10, 10, 0.86) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   1) HERO
+   ============================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(26, 26, 26, 0.5) 50%, rgba(10, 10, 10, 0.6) 100%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 106, 0, 0.12) 0%, transparent 60%),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            rgba(46, 139, 87, 0.02) 50px,
+            rgba(46, 139, 87, 0.02) 51px
+        );
+    z-index: 0;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23ff6a00' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-logo {
+    max-width: min(90vw, 500px);
+    height: auto;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0 0 30px rgba(255, 106, 0, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.02);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-discord-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--discord) !important;
+    color: var(--branco) !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4) !important;
+}
+
+.btn-discord-hero:hover {
+    background: #6d7af5 !important;
+    box-shadow: 0 6px 30px rgba(88, 101, 242, 0.6) !important;
+}
+
+.btn-discord-hero .discord-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* ============================================
+   PROMOÇÃO DONATE
+   ============================================ */
+.promo-donate {
+    margin-top: 0.75rem;
+}
+
+.promo-donate-panel {
+    background: rgba(15, 15, 15, 0.75);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.promo-donate-title {
+    color: #e85a2a;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e85a2a;
+}
+
+.promo-donate-banner {
+    margin: 0.5rem 0 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.promo-donate-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.promo-donate-desc {
+    color: #e85a2a;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.promo-diamond {
+    color: #4a9eff;
+    font-size: 0.9rem;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--laranja-chakra), #ff8533);
+    color: var(--branco);
+    box-shadow: 0 4px 20px rgba(255, 106, 0, 0.4);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 30px rgba(255, 106, 0, 0.6);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--verde-ninja);
+    border: 2px solid var(--verde-ninja);
+}
+
+.btn-secondary:hover {
+    background: rgba(46, 139, 87, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(46, 139, 87, 0.3);
+}
+
+.btn-large {
+    padding: 1.25rem 3rem;
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   2) SOBRE O JOGO
+   ============================================ */
+.sobre {
+    padding: 5rem 0;
+    background: rgba(26, 26, 26, 0.7);
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    color: var(--branco);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: linear-gradient(145deg, var(--cinza-medio), var(--cinza-escuro));
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(255, 106, 0, 0.2);
+    border-color: var(--laranja-chakra);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    color: var(--laranja-chakra);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   3) COMO COMEÇAR
+   ============================================ */
+.como-comecar {
+    padding: 5rem 0;
+    background: rgba(10, 10, 10, 0.85);
+}
+
+.passos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.passo {
+    text-align: center;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.passo:hover {
+    transform: scale(1.05);
+}
+
+.passo-numero {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--laranja-chakra), var(--verde-ninja));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--branco);
+    box-shadow: 0 4px 20px rgba(255, 106, 0, 0.4);
+}
+
+.passo h3 {
+    color: var(--verde-ninja);
+    margin-bottom: 0.5rem;
+}
+
+.passo p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   4) SCREENSHOTS
+   ============================================ */
+.screenshots {
+    padding: 5rem 0;
+    background: rgba(26, 26, 26, 0.7);
+}
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.screenshot-placeholder {
+    aspect-ratio: 16/9;
+    background: linear-gradient(145deg, var(--cinza-medio), var(--preto));
+    border-radius: 12px;
+    border: 2px dashed rgba(255, 106, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.screenshot-placeholder:hover {
+    border-color: var(--laranja-chakra);
+    transform: scale(1.02);
+}
+
+.screenshot-placeholder::after {
+    content: 'Screenshot';
+}
+
+/* ============================================
+   5) DISCORD
+   ============================================ */
+.discord {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), rgba(10, 10, 10, 0.85));
+    border-top: 1px solid rgba(88, 101, 242, 0.2);
+    border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+.discord-desc {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-discord {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0 auto;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--discord);
+    color: var(--branco);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+}
+
+.btn-discord:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 40px rgba(88, 101, 242, 0.6);
+    background: #6d7af5;
+}
+
+.discord-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* ============================================
+   6) CTA FINAL
+   ============================================ */
+.cta-final {
+    padding: 5rem 0;
+    background: rgba(26, 26, 26, 0.7);
+    text-align: center;
+}
+
+.cta-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--laranja-chakra), var(--verde-ninja));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   7) FOOTER
+   ============================================ */
+.footer {
+    padding: 2rem 0;
+    background: rgba(10, 10, 10, 0.9);
+    border-top: 1px solid var(--cinza-medio);
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.footer-copy {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-dev {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-dev a {
+    color: var(--laranja-chakra);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-dev a:hover {
+    color: var(--verde-ninja);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--laranja-chakra);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--verde-ninja);
+}
+
+/* ============================================
+   ANIMAÇÕES - Fade in ao rolar
+   ============================================ */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar fade-in nas seções */
+.promo-donate,
+.sobre .section-title,
+.sobre .cards-grid .card,
+.como-comecar .section-title,
+.como-comecar .passos-grid .passo,
+.screenshots .section-title,
+.screenshots .screenshots-grid .screenshot-placeholder,
+.discord .section-title,
+.discord .discord-desc,
+.discord .btn-discord,
+.cta-final .cta-title,
+.cta-final .btn {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.promo-donate.visible,
+.sobre.visible .section-title,
+.sobre.visible .cards-grid .card,
+.como-comecar.visible .section-title,
+.como-comecar.visible .passos-grid .passo,
+.screenshots.visible .section-title,
+.screenshots.visible .screenshots-grid .screenshot-placeholder,
+.discord.visible .section-title,
+.discord.visible .discord-desc,
+.discord.visible .btn-discord,
+.cta-final.visible .cta-title,
+.cta-final.visible .btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay nos cards para efeito cascata */
+.cards-grid .card:nth-child(1) { transition-delay: 0.1s; }
+.cards-grid .card:nth-child(2) { transition-delay: 0.2s; }
+.cards-grid .card:nth-child(3) { transition-delay: 0.3s; }
+
+.passos-grid .passo:nth-child(1) { transition-delay: 0.1s; }
+.passos-grid .passo:nth-child(2) { transition-delay: 0.2s; }
+.passos-grid .passo:nth-child(3) { transition-delay: 0.3s; }
+
+.screenshots-grid .screenshot-placeholder:nth-child(1) { transition-delay: 0.1s; }
+.screenshots-grid .screenshot-placeholder:nth-child(2) { transition-delay: 0.2s; }
+.screenshots-grid .screenshot-placeholder:nth-child(3) { transition-delay: 0.3s; }
+.screenshots-grid .screenshot-placeholder:nth-child(4) { transition-delay: 0.4s; }
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-logo {
+        max-width: min(85vw, 400px);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .passos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .screenshots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 90vh;
+    }
+
+    .hero-logo {
+        max-width: 80vw;
+    }
+
+    .promo-donate-panel {
+        padding: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}

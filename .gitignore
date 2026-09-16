@@ -1,0 +1,24 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Compactados / backups
+*.zip
+Nto 2D.zip
+
+# Dependências / cache
+node_modules/
+.wrangler/
+dist/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
