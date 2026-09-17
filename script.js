@@ -10,7 +10,7 @@
 const DISCORD_LINK = "https://discord.gg/WCmQUBjX9G";
 
 // ============================================
-// Jogo em desenvolvimento - Jogar, Criar Conta, Baixar
+// Jogo em desenvolvimento - Jogar, Baixar
 // ============================================
 
 function initEmDesenvolvimento() {
@@ -19,6 +19,20 @@ function initEmDesenvolvimento() {
         btn.addEventListener("click", function (e) {
             e.preventDefault();
             alert("Jogo em desenvolvimento");
+        });
+    });
+}
+
+// ============================================
+// Criar conta - aviso
+// ============================================
+
+function initCriarConta() {
+    const btns = document.querySelectorAll(".btn-criar-conta");
+    btns.forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            alert("Conta cria no cliente");
         });
     });
 }
@@ -86,6 +100,7 @@ function initScrollAnimations() {
 
 document.addEventListener("DOMContentLoaded", function () {
     initEmDesenvolvimento();
+    initCriarConta();
     initDiscord();
     initScrollAnimations();
 });
