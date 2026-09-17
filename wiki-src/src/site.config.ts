@@ -8,11 +8,11 @@ export const SITE = {
   description:
     'Wiki do Naruto 2D: primeiros passos, personagens, jutsus, combate, ranks ninja, missões, itens, organizações e eventos explicados de forma simples.',
 
-  siteUrl: 'https://nto2d.pages.dev',
+  siteUrl: 'https://naruto2d.online',
 
-  officialUrl: 'https://nto2d.pages.dev',
-  playUrl: 'https://nto2d.pages.dev',
-  downloadUrl: 'https://nto2d.pages.dev',
+  officialUrl: 'https://naruto2d.online',
+  playUrl: 'https://naruto2d.online',
+  downloadUrl: 'https://naruto2d.online',
   discordUrl: 'https://discord.gg/WCmQUBjX9G',
   social: {
     youtube: '',

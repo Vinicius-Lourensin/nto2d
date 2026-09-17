@@ -1,13 +1,14 @@
 {
-  "name": "nto2d-site",
+  "name": "naruto2d-site",
   "private": true,
-  "description": "Landing Naruto 2D + Wiki em /wiki (Cloudflare Pages)",
+  "description": "Landing Naruto 2D + Wiki em /wiki (Cloudflare Pages → naruto2d.online)",
   "type": "module",
   "engines": {
     "node": ">=18.20.8"
   },
   "scripts": {
     "build": "node build.mjs",
-    "build:wiki": "npm --prefix wiki-src run build"
+    "build:wiki": "npm --prefix wiki-src run build",
+    "deploy": "node build.mjs && wrangler pages deploy dist-site --project-name=naruto2d --commit-dirty=true"
   }
 }

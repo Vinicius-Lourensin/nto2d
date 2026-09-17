@@ -1,0 +1,32 @@
+name: Deploy naruto2d.online
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: wiki-src/package-lock.json
+
+      - name: Build site
+        run: npm run build
+        env:
+          SITE_URL: https://naruto2d.online
+
+      - name: Deploy to Cloudflare Pages (naruto2d)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist-site --project-name=naruto2d --commit-dirty=true --branch=main

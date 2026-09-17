@@ -55,6 +55,7 @@ console.log('2/3 Build da wiki (Astro + Pagefind)…');
 if (!existsSync(join(wikiSrc, 'node_modules'))) {
   run('npm', ['ci'], wikiSrc);
 }
+process.env.SITE_URL = process.env.SITE_URL || 'https://naruto2d.online';
 run('npm', ['run', 'build'], wikiSrc);
 
 console.log('3/3 Wiki → dist-site/wiki/');
