@@ -1,0 +1,51 @@
+---
+import { SITE, SOCIAL_LABELS, type SocialKey } from '../site.config';
+import { CATEGORIES } from '../data/categories';
+
+const socials = (Object.keys(SITE.social) as SocialKey[])
+  .filter((k) => SITE.social[k])
+  .map((k) => ({ label: SOCIAL_LABELS[k], href: SITE.social[k] }));
+
+const official = [
+  SITE.officialUrl && { label: 'Site oficial', href: SITE.officialUrl },
+  SITE.playUrl && { label: 'Jogar agora', href: SITE.playUrl },
+  SITE.downloadUrl && { label: 'Download', href: SITE.downloadUrl },
+  SITE.discordUrl && { label: 'Discord', href: SITE.discordUrl },
+  ...socials,
+].filter(Boolean) as { label: string; href: string }[];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <img src={SITE.logo} width="44" height="44" alt="" loading="lazy" />
+      <div>
+        <strong>{SITE.wikiName}</strong>
+        <p>Guia do jogador de {SITE.gameName}. As informações são conferidas nos arquivos do próprio jogo.</p>
+      </div>
+    </div>
+
+    <nav aria-label="Categorias">
+      <p class="site-footer__title">Categorias</p>
+      <ul>
+        {CATEGORIES.map((c) => <li><a href={`/wiki/categoria/${c.slug}/`}>{c.title}</a></li>)}
+      </ul>
+    </nav>
+
+    <nav aria-label="Atalhos">
+      <p class="site-footer__title">Atalhos</p>
+      <ul>
+        <li><a href="/wiki/guia-rapido/">Guia para iniciantes</a></li>
+        <li><a href="/wiki/paginas/">Todas as páginas</a></li>
+        <li><a href="/wiki/busca/">Buscar</a></li>
+        <li><a href="/">Site do jogo</a></li>
+        {official.map((l) => <li><a href={l.href} rel="noopener" target="_blank">{l.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+  <p class="site-footer__legal">
+    © {year} {SITE.wikiName}. Nomes de personagens citados pertencem aos seus respectivos detentores de direitos.
+  </p>
+</footer>

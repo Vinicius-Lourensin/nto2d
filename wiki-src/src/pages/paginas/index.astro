@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES } from '../../data/categories';
+import { getArticles, categoryUrl } from '../../lib/wiki';
+
+const articles = await getArticles();
+const groups = CATEGORIES.map((c) => ({ ...c, items: articles.filter((a) => a.data.category === c.slug) })).filter(
+  (g) => g.items.length > 0,
+);
+---
+
+<BaseLayout title="Todas as páginas" description={`Índice completo com as ${articles.length} páginas da wiki, organizadas por categoria.`} sidebar>
+  <Breadcrumbs items={[{ label: 'Início', href: '/wiki/' }, { label: 'Todas as páginas' }]} />
+  <header class="page-head">
+    <h1>Todas as páginas</h1>
+    <p>{articles.length} páginas organizadas por categoria.</p>
+  </header>
+  {
+    groups.map((g) => (
+      <section class="group-block" aria-labelledby={`g-${g.slug}`}>
+        <h2 id={`g-${g.slug}`}>
+          <span class="cat-tile__seal" aria-hidden="true">
+            {g.icon}
+          </span>
+          <a href={categoryUrl(g.slug)}>{g.title}</a>
+        </h2>
+        <div class="cards">
+          {g.items.map((e) => (
+            <ArticleCard entry={e} showCategory={false} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>

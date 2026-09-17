@@ -1,0 +1,17 @@
+---
+/**
+ * Espaço reservado para imagens que ainda não existem no repositório.
+ * Troque por <img> quando houver sprites/screenshots reais em /public/img.
+ */
+interface Props {
+  label: string;
+  glyph?: string;
+  ratio?: string;
+}
+const { label, glyph = '忍', ratio = '16 / 7' } = Astro.props;
+---
+
+<figure class="placeholder" style={`aspect-ratio: ${ratio}`} role="img" aria-label={`Imagem pendente: ${label}`}>
+  <span class="placeholder__glyph" aria-hidden="true">{glyph}</span>
+  <figcaption>{label}<small>imagem pendente</small></figcaption>
+</figure>

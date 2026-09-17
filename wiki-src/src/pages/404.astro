@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Página não encontrada" description="Esta página não existe ou mudou de endereço." noindex>
+  <section class="not-found">
+    <div>
+      <p class="not-found__code" aria-hidden="true">迷</p>
+      <h1>Você se perdeu no mapa</h1>
+      <p>A página que você procurou não existe ou mudou de endereço. Tente a busca ou volte para um lugar seguro.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/wiki/">Voltar à wiki</a>
+        <a class="btn btn--ghost" href="/wiki/busca/">Buscar na wiki</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

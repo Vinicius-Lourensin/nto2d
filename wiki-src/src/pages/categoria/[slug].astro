@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES, type Category } from '../../data/categories';
+import { getArticles } from '../../lib/wiki';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return CATEGORIES.filter((c) => articles.some((a) => a.data.category === c.slug)).map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+interface Props {
+  category: Category;
+}
+const { category } = Astro.props;
+const items = (await getArticles()).filter((a) => a.data.category === category.slug);
+---
+
+<BaseLayout title={category.title} description={category.description} sidebar currentCategory={category.slug}>
+  <Breadcrumbs items={[{ label: 'Início', href: '/wiki/' }, { label: category.title }]} />
+  <header class="page-head">
+    <span class="kicker">Categoria</span>
+    <h1>
+      <span class="cat-tile__seal" aria-hidden="true" style="display:inline-grid;vertical-align:middle;margin-right:12px">{category.icon}</span>{category.title}
+    </h1>
+    <p>{category.description}</p>
+  </header>
+  <div class="cards">
+    {items.map((e) => <ArticleCard entry={e} showCategory={false} />)}
+  </div>
+</BaseLayout>

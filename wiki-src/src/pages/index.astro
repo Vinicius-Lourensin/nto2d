@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { SITE } from '../site.config';
+import { CATEGORIES } from '../data/categories';
+import { getArticles, articleUrl, categoryUrl } from '../lib/wiki';
+
+const articles = await getArticles();
+const popular = articles.filter((a) => a.data.popular);
+const beginner = articles.filter((a) => a.data.category === 'comecando');
+const cats = CATEGORIES.map((c) => ({ ...c, items: articles.filter((a) => a.data.category === c.slug) })).filter(
+  (c) => c.items.length > 0,
+);
+const quick = [...articles].sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+// Sem URL de jogo configurada, o botão leva ao guia de primeiros passos.
+const playHref = SITE.playUrl || '/wiki/primeiros-passos/';
+const playExternal = Boolean(SITE.playUrl);
+
+const site = Astro.site ?? new URL(SITE.siteUrl);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.wikiName,
+    url: site.href,
+    inLanguage: SITE.lang,
+    description: SITE.description,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${new URL('/wiki/busca/', site).href}?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  },
+];
+---
+
+<BaseLayout title={SITE.gameName} jsonLd={jsonLd}>
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="hero__eyebrow">Wiki do jogador</p>
+    <h1 class="hero__title" id="hero-title">{SITE.gameName}</h1>
+    <p class="hero__lead">{SITE.tagline}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={playHref} {...(playExternal ? { rel: 'noopener', target: '_blank' } : {})}>
+        Começar a jogar
+      </a>
+      <a class="btn btn--ghost" href="/wiki/guia-rapido/">Guia para iniciantes</a>
+    </div>
+    <form class="hero__search" action="/wiki/busca/" method="get" role="search">
+      <label class="sr-only" for="busca-hero">Buscar na wiki</label>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      <input id="busca-hero" name="q" type="search" placeholder="O que você quer aprender? Ex.: jutsus, reset, PK…" />
+    </form>
+  </section>
+
+  {
+    popular.length > 0 && (
+      <section class="home-section" aria-labelledby="sistemas">
+        <div class="section-head">
+          <div>
+            <span class="kicker">O essencial</span>
+            <h2 id="sistemas">Principais sistemas</h2>
+          </div>
+          <p>Os sistemas que todo ninja precisa entender para evoluir rápido.</p>
+        </div>
+        <div class="cards">
+          {popular.map((e) => (
+            <ArticleCard entry={e} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    beginner.length > 0 && (
+      <section class="home-section" aria-labelledby="trilha">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Conteúdo recomendado</span>
+            <h2 id="trilha">Trilha do iniciante</h2>
+          </div>
+          <p>Leia nesta ordem e você chega ao seu primeiro jutsu sabendo o que está fazendo.</p>
+        </div>
+        <ol class="steps">
+          {beginner.map((e) => (
+            <li>
+              <a href={articleUrl(e)}>
+                <div>
+                  <strong>{e.data.title}</strong>
+                  <span>{e.data.description}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+
+  <section class="home-section" aria-labelledby="categorias">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Explore</span>
+        <h2 id="categorias">Categorias da Wiki</h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      {
+        cats.map((c) => (
+          <article class="cat-tile">
+            <div class="cat-tile__head">
+              <span class="cat-tile__seal" aria-hidden="true">
+                {c.icon}
+              </span>
+              <div>
+                <h3>
+                  <a href={categoryUrl(c.slug)}>{c.title}</a>
+                </h3>
+                <span class="cat-tile__count">
+                  {c.items.length} {c.items.length === 1 ? 'página' : 'páginas'}
+                </span>
+              </div>
+            </div>
+            <p>{c.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="acesso">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Atalhos</span>
+        <h2 id="acesso">Acesso rápido</h2>
+      </div>
+      <a href="/wiki/paginas/">Ver todas as páginas →</a>
+    </div>
+    <ul class="chips">
+      {
+        quick.map((e) => (
+          <li>
+            <a href={articleUrl(e)}>{e.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

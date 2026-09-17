@@ -1,0 +1,30 @@
+---
+import { articleUrl, type WikiEntry } from '../lib/wiki';
+
+interface Props {
+  prev: WikiEntry | null;
+  next: WikiEntry | null;
+}
+const { prev, next } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav class="prev-next" aria-label="Navegação entre artigos" data-pagefind-ignore>
+      {prev ? (
+        <a class="prev-next__link prev-next__link--prev" href={articleUrl(prev)} rel="prev">
+          <span class="prev-next__label">← Anterior</span>
+          <span class="prev-next__title">{prev.data.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+      {next && (
+        <a class="prev-next__link prev-next__link--next" href={articleUrl(next)} rel="next">
+          <span class="prev-next__label">Próximo →</span>
+          <span class="prev-next__title">{next.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

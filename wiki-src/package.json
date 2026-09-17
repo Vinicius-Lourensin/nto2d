@@ -1,0 +1,25 @@
+{
+  "name": "elysium-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wiki estática do jogo, gerada com Astro e publicada na Cloudflare Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.20.8"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist && node scripts/validate-dist.mjs",
+    "build:site": "astro build",
+    "search:index": "pagefind --site dist",
+    "validate": "node scripts/validate-dist.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.2",
+    "typescript": "5.9.3"
+  }
+}

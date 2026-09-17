@@ -1,0 +1,53 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  id?: string;
+}
+const { headings, id = 'toc' } = Astro.props;
+const items = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{
+  items.length >= 2 && (
+    <nav class="toc" aria-labelledby={`${id}-title`} data-toc data-pagefind-ignore>
+      <p class="toc__title" id={`${id}-title`}>Nesta página</p>
+      <ol>
+        {items.map((h) => (
+          <li class={`toc__item toc__item--${h.depth}`}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  // Destaca no índice a seção que está visível na tela.
+  const tocs = document.querySelectorAll<HTMLElement>('[data-toc]');
+  if (tocs.length && 'IntersectionObserver' in window) {
+    const links = new Map<string, HTMLAnchorElement[]>();
+    tocs.forEach((toc) =>
+      toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+        const id = decodeURIComponent(a.hash.slice(1));
+        links.set(id, [...(links.get(id) ?? []), a]);
+      }),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          document.querySelectorAll('[data-toc] a.is-active').forEach((a) => a.classList.remove('is-active'));
+          links.get(entry.target.id)?.forEach((a) => a.classList.add('is-active'));
+        });
+      },
+      { rootMargin: '-80px 0px -70% 0px' },
+    );
+    links.forEach((_, id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  }
+</script>

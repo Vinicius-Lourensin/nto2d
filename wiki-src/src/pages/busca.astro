@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout title="Buscar" description="Busque por jutsus, sistemas, itens, missões e termos do jogo." noindex sidebar>
+  <link rel="stylesheet" href="/wiki/pagefind/pagefind-ui.css" />
+  <div class="search-page">
+    <Breadcrumbs items={[{ label: 'Início', href: '/wiki/' }, { label: 'Buscar' }]} />
+    <header class="page-head">
+      <h1>Buscar na wiki</h1>
+      <p>Procure por título, categoria, palavras-chave ou qualquer trecho dos artigos.</p>
+    </header>
+    <div id="busca"></div>
+    <p class="search-fallback" id="busca-indisponivel" hidden>
+      A busca é gerada durante o <code>npm run build</code>. No modo de desenvolvimento ela fica indisponível — use o
+      menu de categorias ou a página <a href="/wiki/paginas/">Todas as páginas</a>.
+    </p>
+  </div>
+
+  <script is:inline src="/wiki/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    (function () {
+      function start() {
+        if (!window.PagefindUI) {
+          document.getElementById('busca-indisponivel').hidden = false;
+          return;
+        }
+        var ui = new window.PagefindUI({
+          element: '#busca',
+          baseUrl: '/wiki/',
+          showSubResults: true,
+          showImages: false,
+          resetStyles: false,
+          translations: {
+            placeholder: 'Buscar jutsus, sistemas, itens…',
+            clear_search: 'Limpar',
+            load_more: 'Mais resultados',
+            search_label: 'Buscar na wiki',
+            filters_label: 'Filtros',
+            zero_results: 'Nenhum resultado para [SEARCH_TERM]',
+            many_results: '[COUNT] resultados para [SEARCH_TERM]',
+            one_result: '[COUNT] resultado para [SEARCH_TERM]',
+            alt_search: 'Nenhum resultado para [SEARCH_TERM]. Mostrando resultados para [DIFFERENT_TERM]',
+            search_suggestion: 'Nenhum resultado para [SEARCH_TERM]. Tente outra palavra:',
+            searching: 'Buscando [SEARCH_TERM]…',
+          },
+        });
+        var q = new URLSearchParams(location.search).get('q');
+        if (q) ui.triggerSearch(q);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+      else start();
+    })();
+  </script>
+</BaseLayout>

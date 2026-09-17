@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Emblema da Elysium Wiki">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9482a"/>
+      <stop offset="1" stop-color="#8f2412"/>
+    </linearGradient>
+  </defs>
+  <!-- selo quadrado estilo carimbo (hanko), traço original -->
+  <rect x="4" y="4" width="56" height="56" rx="13" fill="url(#g)"/>
+  <rect x="9" y="9" width="46" height="46" rx="9" fill="none" stroke="#f7e9d7" stroke-opacity=".55" stroke-width="1.5"/>
+  <!-- letra E em pinceladas -->
+  <path d="M22 18 C30 16.5 38 16.5 44 17.5" stroke="#fbf3e6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M23 18 C22 27 22.5 37 23.5 46" stroke="#fbf3e6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M24 32 C30 31 35 31 40 32" stroke="#fbf3e6" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <path d="M24 46 C31 47 38 47 45 45.5" stroke="#fbf3e6" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <circle cx="46" cy="32" r="2.6" fill="#fbf3e6"/>
+</svg>

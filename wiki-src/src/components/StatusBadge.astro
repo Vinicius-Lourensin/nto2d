@@ -1,0 +1,13 @@
+---
+interface Props {
+  status: 'confirmado' | 'parcial' | 'rascunho';
+}
+const { status } = Astro.props;
+const labels = {
+  confirmado: 'Confirmado nos arquivos do jogo',
+  parcial: 'Contém trechos pendentes de revisão',
+  rascunho: 'Rascunho',
+} as const;
+---
+
+<span class:list={['badge', `badge--${status}`]}>{labels[status]}</span>

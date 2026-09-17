@@ -17,6 +17,9 @@ Nto 2D.zip
 node_modules/
 .wrangler/
 dist/
+dist-site/
+_tmp_recover/
+_wiki_extract/
 
 # Env / secrets
 .env

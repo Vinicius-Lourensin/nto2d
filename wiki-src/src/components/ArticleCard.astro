@@ -1,0 +1,26 @@
+---
+import { getCategory } from '../data/categories';
+import { articleUrl, type WikiEntry } from '../lib/wiki';
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  entry: WikiEntry;
+  showCategory?: boolean;
+}
+const { entry, showCategory = true } = Astro.props;
+const cat = getCategory(entry.data.category);
+---
+
+<a class="card" href={articleUrl(entry)}>
+  {
+    showCategory && cat && (
+      <span class="card__eyebrow">
+        <span class="card__glyph" aria-hidden="true">{cat.icon}</span>
+        {cat.title}
+      </span>
+    )
+  }
+  <span class="card__title">{entry.data.title}</span>
+  <span class="card__desc">{entry.data.description}</span>
+  {entry.data.status === 'parcial' && <StatusBadge status="parcial" />}
+</a>

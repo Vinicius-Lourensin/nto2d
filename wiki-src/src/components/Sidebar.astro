@@ -1,0 +1,40 @@
+---
+import { CATEGORIES } from '../data/categories';
+import { getArticles, articleUrl, categoryUrl } from '../lib/wiki';
+
+interface Props {
+  currentSlug?: string;
+  currentCategory?: string;
+}
+const { currentSlug, currentCategory } = Astro.props;
+
+const articles = await getArticles();
+const groups = CATEGORIES.map((c) => ({
+  ...c,
+  items: articles.filter((a) => a.data.category === c.slug),
+})).filter((g) => g.items.length > 0);
+---
+
+<nav class="side-nav" aria-label="Categorias e páginas">
+  <a class="side-nav__home" href="/wiki/">Início</a>
+  {
+    groups.map((g) => (
+      <details class="side-group" open={!currentCategory || g.slug === currentCategory}>
+        <summary>
+          <span class="side-group__icon" aria-hidden="true">{g.icon}</span>
+          <span>{g.title}</span>
+        </summary>
+        <ul>
+          {g.items.map((a) => (
+            <li>
+              <a href={articleUrl(a)} aria-current={a.id === currentSlug ? 'page' : undefined}>
+                {a.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a class="side-group__all" href={categoryUrl(g.slug)}>Ver categoria →</a>
+      </details>
+    ))
+  }
+</nav>
