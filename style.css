@@ -1,21 +1,25 @@
 /* ============================================
-   NARUTO 2D - Landing Page
-   Tema ninja inspirado em Naruto
+   NARUTO 2D — Landing
    ============================================ */
 
-/* Variáveis */
 :root {
     --laranja-chakra: #ff6a00;
+    --laranja-suave: #ff8533;
     --verde-ninja: #2e8b57;
-    --preto: #0a0a0a;
-    --cinza-escuro: #1a1a1a;
-    --cinza-medio: #2d2d2d;
-    --branco: #ffffff;
-    --discord: #5865F2;
+    --preto: #07080a;
+    --ink: #0c0d10;
+    --painel: rgba(12, 13, 16, 0.72);
+    --linha: rgba(255, 255, 255, 0.1);
+    --texto: #f4f0ea;
+    --texto-suave: rgba(244, 240, 234, 0.78);
+    --discord: #5865f2;
+    --font-display: 'Oxanium', 'Segoe UI', sans-serif;
+    --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
 }
 
-/* Reset e Base */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -26,175 +30,181 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: transparent;
-    color: var(--branco);
-    line-height: 1.6;
+    font-family: var(--font-body);
+    background: var(--preto);
+    color: var(--texto);
+    line-height: 1.65;
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
 }
 
-/* Fundo Konoha - rola junto com a página */
 body::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-height: 100vh;
-    background: url("https://wallpapers.com/images/hd/konoha-kwldytpkkc1uo4qb.jpg") center top / cover no-repeat;
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(7, 8, 10, 0.55) 0%, rgba(7, 8, 10, 0.78) 55%, rgba(7, 8, 10, 0.92) 100%),
+        url("https://wallpapers.com/images/hd/konoha-kwldytpkkc1uo4qb.jpg") center top / cover no-repeat;
     z-index: -2;
     pointer-events: none;
 }
 
 body::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-height: 100vh;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.8) 50%, rgba(10, 10, 10, 0.86) 100%);
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(900px 480px at 50% 0%, rgba(255, 106, 0, 0.16), transparent 60%),
+        radial-gradient(700px 400px at 90% 40%, rgba(46, 139, 87, 0.08), transparent 55%);
     z-index: -1;
     pointer-events: none;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem;
 }
 
-/* ============================================
-   1) HERO
-   ============================================ */
+/* ---------- HERO ---------- */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 4rem 0 3rem;
     overflow: hidden;
 }
 
-.hero-bg {
+.hero-veil {
     position: absolute;
     inset: 0;
-    background: 
-        linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(26, 26, 26, 0.5) 50%, rgba(10, 10, 10, 0.6) 100%),
-        radial-gradient(ellipse at 50% 50%, rgba(255, 106, 0, 0.12) 0%, transparent 60%),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 50px,
-            rgba(46, 139, 87, 0.02) 50px,
-            rgba(46, 139, 87, 0.02) 51px
-        );
-    z-index: 0;
-}
-
-.hero-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23ff6a00' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+    background: radial-gradient(ellipse at 50% 35%, transparent 0%, rgba(7, 8, 10, 0.35) 70%);
+    pointer-events: none;
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
     text-align: center;
-    animation: fadeInUp 1s ease-out;
+    animation: rise 1s ease-out both;
 }
 
 .hero-logo {
-    max-width: min(90vw, 500px);
+    width: min(88vw, 460px);
     height: auto;
-    margin-bottom: 1rem;
+    margin: 0 auto 1.25rem;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    filter: drop-shadow(0 0 30px rgba(255, 106, 0, 0.4));
-    transition: transform 0.3s ease;
-}
-
-.hero-logo:hover {
-    transform: scale(1.02);
+    filter: drop-shadow(0 12px 40px rgba(255, 106, 0, 0.35));
+    animation: floatLogo 5.5s ease-in-out infinite;
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
+    font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+    color: var(--texto-suave);
+    max-width: 34rem;
+    margin: 0 auto 2rem;
+    font-weight: 500;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.85rem;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.btn-discord-hero {
+.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--discord) !important;
-    color: var(--branco) !important;
-    border: none !important;
-    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4) !important;
+    min-height: 3rem;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--laranja-chakra), var(--laranja-suave));
+    color: #140a02;
+    box-shadow: 0 8px 28px rgba(255, 106, 0, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(255, 106, 0, 0.45);
+}
+
+.btn-wiki {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--texto);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-wiki:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-discord-hero {
+    background: var(--discord);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(88, 101, 242, 0.35);
 }
 
 .btn-discord-hero:hover {
-    background: #6d7af5 !important;
-    box-shadow: 0 6px 30px rgba(88, 101, 242, 0.6) !important;
+    background: #6d7af5;
+    transform: translateY(-2px);
 }
 
 .btn-discord-hero .discord-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
-/* ============================================
-   PROMOÇÃO DONATE
-   ============================================ */
+.btn-large {
+    min-height: 3.35rem;
+    padding: 1rem 2.25rem;
+    font-size: 1.05rem;
+}
+
+/* ---------- PROMO ---------- */
 .promo-donate {
-    margin-top: 0.75rem;
+    margin-top: 2rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--linha);
 }
 
-.promo-donate-panel {
-    background: rgba(15, 15, 15, 0.75);
-    border-radius: 16px;
-    padding: 2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    border: 1px solid rgba(255, 106, 0, 0.2);
-    backdrop-filter: blur(8px);
-}
-
-.promo-donate-title {
-    color: #e85a2a;
-    font-size: 1.25rem;
+.promo-donate-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e85a2a;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--laranja-suave);
+    margin-bottom: 0.75rem;
 }
 
 .promo-donate-banner {
-    margin: 0.5rem 0 1rem;
-    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 106, 0, 0.25);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .promo-donate-banner img {
@@ -204,316 +214,281 @@ body::after {
 }
 
 .promo-donate-desc {
-    color: #e85a2a;
-    font-size: 1rem;
+    margin-top: 0.85rem;
+    color: var(--texto-suave);
+    font-size: 0.98rem;
     font-weight: 600;
+}
+
+/* ---------- SECTIONS ---------- */
+.section-head {
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    max-width: 40rem;
+    margin: 0 auto 2.75rem;
 }
 
-.promo-diamond {
-    color: #4a9eff;
-    font-size: 0.9rem;
-}
-
-/* Botões */
-.btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
+.section-kicker {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
     font-weight: 700;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--laranja-chakra), #ff8533);
-    color: var(--branco);
-    box-shadow: 0 4px 20px rgba(255, 106, 0, 0.4);
-}
-
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 30px rgba(255, 106, 0, 0.6);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--verde-ninja);
-    border: 2px solid var(--verde-ninja);
-}
-
-.btn-secondary:hover {
-    background: rgba(46, 139, 87, 0.2);
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(46, 139, 87, 0.3);
-}
-
-.btn-wiki {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--branco);
-    border: 2px solid rgba(255, 255, 255, 0.55);
-}
-
-.btn-wiki:hover {
-    background: rgba(255, 255, 255, 0.16);
-    transform: scale(1.05);
-    border-color: var(--branco);
-}
-
-.btn-large {
-    padding: 1.25rem 3rem;
-    font-size: 1.2rem;
-}
-
-/* ============================================
-   2) SOBRE O JOGO
-   ============================================ */
-.sobre {
-    padding: 5rem 0;
-    background: rgba(26, 26, 26, 0.7);
+    color: var(--laranja-chakra);
+    margin-bottom: 0.65rem;
 }
 
 .section-title {
-    text-align: center;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 3rem;
-    color: var(--branco);
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.card {
-    background: linear-gradient(145deg, var(--cinza-medio), var(--cinza-escuro));
-    padding: 2.5rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid rgba(255, 106, 0, 0.2);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(255, 106, 0, 0.2);
-    border-color: var(--laranja-chakra);
-}
-
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.card h3 {
-    color: var(--laranja-chakra);
-    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    color: var(--texto);
     margin-bottom: 0.75rem;
 }
 
-.card p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
+.section-lead {
+    color: var(--texto-suave);
+    font-size: 1.05rem;
 }
 
-/* ============================================
-   3) COMO COMEÇAR
-   ============================================ */
+.sobre {
+    padding: 5.5rem 0;
+    background: var(--painel);
+    border-top: 1px solid var(--linha);
+    border-bottom: 1px solid var(--linha);
+    backdrop-filter: blur(8px);
+}
+
+.feature-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.feature-item {
+    padding: 0 0 0 1.15rem;
+    border-left: 2px solid var(--laranja-chakra);
+}
+
+.feature-item h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 0.45rem;
+}
+
+.feature-item p {
+    color: var(--texto-suave);
+    font-size: 0.98rem;
+}
+
 .como-comecar {
-    padding: 5rem 0;
-    background: rgba(10, 10, 10, 0.85);
+    padding: 5.5rem 0;
 }
 
 .passos-grid {
+    list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 2rem;
+    counter-reset: none;
 }
 
 .passo {
-    text-align: center;
-    padding: 2rem;
-    transition: all 0.3s ease;
-}
-
-.passo:hover {
-    transform: scale(1.05);
+    text-align: left;
+    padding: 0.25rem 0;
 }
 
 .passo-numero {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, var(--laranja-chakra), var(--verde-ninja));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
     font-weight: 800;
-    color: var(--branco);
-    box-shadow: 0 4px 20px rgba(255, 106, 0, 0.4);
+    color: var(--laranja-chakra);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.65rem;
+    line-height: 1;
 }
 
 .passo h3 {
-    color: var(--verde-ninja);
-    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--texto);
+    margin-bottom: 0.4rem;
 }
 
 .passo p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
+    color: var(--texto-suave);
+    font-size: 0.98rem;
 }
 
-/* ============================================
-   4) DISCORD
-   ============================================ */
+.start-note {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: var(--texto-suave);
+}
+
+.start-note a {
+    color: var(--laranja-suave);
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
+.start-note a:hover {
+    color: #fff;
+}
+
 .discord {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), rgba(10, 10, 10, 0.85));
-    border-top: 1px solid rgba(88, 101, 242, 0.2);
-    border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+    padding: 4.5rem 0;
+    background: linear-gradient(120deg, rgba(88, 101, 242, 0.18), rgba(12, 13, 16, 0.75));
+    border-top: 1px solid rgba(88, 101, 242, 0.25);
+    border-bottom: 1px solid rgba(88, 101, 242, 0.25);
+}
+
+.discord-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.discord .section-title {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.discord .section-kicker {
+    text-align: left;
 }
 
 .discord-desc {
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    color: rgba(255, 255, 255, 0.9);
+    max-width: 28rem;
+    color: var(--texto-suave);
 }
 
 .btn-discord {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    margin: 0 auto;
-    padding: 1.25rem 2.5rem;
-    font-size: 1.1rem;
+    gap: 0.65rem;
+    min-height: 3.25rem;
+    padding: 0.95rem 1.75rem;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
     font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
     background: var(--discord);
-    color: var(--branco);
+    color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 8px 28px rgba(88, 101, 242, 0.35);
 }
 
 .btn-discord:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 40px rgba(88, 101, 242, 0.6);
+    transform: translateY(-2px);
     background: #6d7af5;
 }
 
 .discord-icon {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
 }
 
-/* ============================================
-   5) CTA FINAL
-   ============================================ */
 .cta-final {
-    padding: 5rem 0;
-    background: rgba(26, 26, 26, 0.7);
+    padding: 5.5rem 0;
     text-align: center;
+    background: rgba(12, 13, 16, 0.55);
 }
 
 .cta-title {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    margin-bottom: 2rem;
-    background: linear-gradient(135deg, var(--laranja-chakra), var(--verde-ninja));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--texto);
 }
 
-/* ============================================
-   7) FOOTER
-   ============================================ */
-.footer {
-    padding: 2rem 0;
-    background: rgba(10, 10, 10, 0.9);
-    border-top: 1px solid var(--cinza-medio);
+.cta-lead {
+    color: var(--texto-suave);
+    margin-bottom: 1.75rem;
 }
 
-.footer .container {
+.cta-actions {
     display: flex;
-    flex-direction: column;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer {
+    padding: 2rem 0 2.5rem;
+    border-top: 1px solid var(--linha);
+    background: rgba(7, 8, 10, 0.9);
+}
+
+.footer-inner {
+    display: flex;
     align-items: center;
-    gap: 1rem;
-    text-align: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
 }
 
-.footer-copy {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+.footer-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(255, 106, 0, 0.3));
 }
 
+.footer-meta {
+    flex: 1 1 auto;
+}
+
+.footer-copy,
 .footer-dev {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
 }
 
 .footer-dev a {
-    color: var(--laranja-chakra);
+    color: var(--laranja-suave);
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 .footer-dev a:hover {
-    color: var(--verde-ninja);
+    color: #fff;
 }
 
 .footer-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
+    flex-wrap: wrap;
 }
 
 .footer-links a {
-    color: var(--laranja-chakra);
+    color: var(--texto-suave);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+    font-size: 0.92rem;
+    font-weight: 600;
 }
 
 .footer-links a:hover {
-    color: var(--verde-ninja);
+    color: var(--laranja-suave);
 }
 
-/* ============================================
-   ANIMAÇÕES - Fade in ao rolar
-   ============================================ */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@keyframes fadeInUp {
+/* ---------- MOTION ---------- */
+@keyframes rise {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(28px);
     }
     to {
         opacity: 1;
@@ -521,94 +496,112 @@ body::after {
     }
 }
 
-/* Aplicar fade-in nas seções */
+@keyframes floatLogo {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
 .promo-donate,
-.sobre .section-title,
-.sobre .cards-grid .card,
-.como-comecar .section-title,
-.como-comecar .passos-grid .passo,
-.discord .section-title,
-.discord .discord-desc,
-.discord .btn-discord,
+.sobre .section-head,
+.sobre .feature-item,
+.como-comecar .section-head,
+.como-comecar .passo,
+.discord-inner,
 .cta-final .cta-title,
-.cta-final .btn {
+.cta-final .cta-lead,
+.cta-final .cta-actions {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
 .promo-donate.visible,
-.sobre.visible .section-title,
-.sobre.visible .cards-grid .card,
-.como-comecar.visible .section-title,
-.como-comecar.visible .passos-grid .passo,
-.discord.visible .section-title,
-.discord.visible .discord-desc,
-.discord.visible .btn-discord,
+.sobre.visible .section-head,
+.sobre.visible .feature-item,
+.como-comecar.visible .section-head,
+.como-comecar.visible .passo,
+.discord.visible .discord-inner,
 .cta-final.visible .cta-title,
-.cta-final.visible .btn {
+.cta-final.visible .cta-lead,
+.cta-final.visible .cta-actions {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Delay nos cards para efeito cascata */
-.cards-grid .card:nth-child(1) { transition-delay: 0.1s; }
-.cards-grid .card:nth-child(2) { transition-delay: 0.2s; }
-.cards-grid .card:nth-child(3) { transition-delay: 0.3s; }
+.feature-item:nth-child(1) { transition-delay: 0.08s; }
+.feature-item:nth-child(2) { transition-delay: 0.16s; }
+.feature-item:nth-child(3) { transition-delay: 0.24s; }
+.passo:nth-child(1) { transition-delay: 0.08s; }
+.passo:nth-child(2) { transition-delay: 0.16s; }
+.passo:nth-child(3) { transition-delay: 0.24s; }
 
-.passos-grid .passo:nth-child(1) { transition-delay: 0.1s; }
-.passos-grid .passo:nth-child(2) { transition-delay: 0.2s; }
-.passos-grid .passo:nth-child(3) { transition-delay: 0.3s; }
-
-/* ============================================
-   RESPONSIVO
-   ============================================ */
-@media (max-width: 768px) {
+@media (prefers-reduced-motion: reduce) {
+    .hero-content,
     .hero-logo {
-        max-width: min(85vw, 400px);
+        animation: none;
     }
 
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-    }
-
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .passos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-links {
-        flex-direction: column;
+    .promo-donate,
+    .sobre .section-head,
+    .sobre .feature-item,
+    .como-comecar .section-head,
+    .como-comecar .passo,
+    .discord-inner,
+    .cta-final .cta-title,
+    .cta-final .cta-lead,
+    .cta-final .cta-actions {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 }
 
-@media (max-width: 480px) {
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 860px) {
+    .feature-list,
+    .passos-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .discord-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
     .hero {
-        min-height: 90vh;
+        min-height: auto;
+        padding: 3.5rem 0 2.5rem;
     }
 
     .hero-logo {
-        max-width: 80vw;
+        width: min(82vw, 360px);
     }
 
-    .promo-donate-panel {
-        padding: 1.5rem;
+    .hero-buttons,
+    .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .section-title {
-        font-size: 1.75rem;
-    }
-
-    .card {
-        padding: 1.5rem;
+    .btn,
+    .btn-discord {
+        width: 100%;
     }
 }

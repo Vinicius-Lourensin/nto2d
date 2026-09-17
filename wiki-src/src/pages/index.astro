@@ -13,10 +13,6 @@ const cats = CATEGORIES.map((c) => ({ ...c, items: articles.filter((a) => a.data
 );
 const quick = [...articles].sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
 
-// Sem URL de jogo configurada, o botão leva ao guia de primeiros passos.
-const playHref = SITE.playUrl || '/wiki/primeiros-passos/';
-const playExternal = Boolean(SITE.playUrl);
-
 const site = Astro.site ?? new URL(SITE.siteUrl);
 const jsonLd = [
   {
@@ -37,19 +33,19 @@ const jsonLd = [
 
 <BaseLayout title={SITE.gameName} jsonLd={jsonLd}>
   <section class="hero" aria-labelledby="hero-title">
-    <p class="hero__eyebrow">Wiki do jogador</p>
-    <h1 class="hero__title" id="hero-title">{SITE.gameName}</h1>
+    <img class="hero__logo" src={SITE.logo} alt={SITE.gameName} width="360" height="360" />
+    <p class="hero__eyebrow">Wiki oficial do jogador</p>
+    <h1 class="hero__title sr-only" id="hero-title">{SITE.gameName}</h1>
     <p class="hero__lead">{SITE.tagline}</p>
     <div class="hero__actions">
-      <a class="btn btn--primary" href={playHref} {...(playExternal ? { rel: 'noopener', target: '_blank' } : {})}>
-        Começar a jogar
-      </a>
-      <a class="btn btn--ghost" href="/wiki/guia-rapido/">Guia para iniciantes</a>
+      <a class="btn btn--primary" href="/wiki/guia-rapido/">Guia para iniciantes</a>
+      <a class="btn btn--ghost" href="/wiki/busca/">Buscar na wiki</a>
+      <a class="btn btn--ghost" href="/" rel="noopener">Site do jogo</a>
     </div>
     <form class="hero__search" action="/wiki/busca/" method="get" role="search">
       <label class="sr-only" for="busca-hero">Buscar na wiki</label>
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-      <input id="busca-hero" name="q" type="search" placeholder="O que você quer aprender? Ex.: jutsus, reset, PK…" />
+      <input id="busca-hero" name="q" type="search" placeholder="Buscar jutsus, reset, PK, missões…" />
     </form>
   </section>
 

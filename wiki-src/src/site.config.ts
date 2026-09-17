@@ -21,8 +21,8 @@ export const SITE = {
     facebook: '',
   },
 
-  // Com base /wiki, arquivos de public/ ficam em /wiki/...
-  logo: '/wiki/logo.svg',
+  // Logo oficial do jogo (PNG em public/)
+  logo: '/wiki/Logo.png',
   ogImage: '/wiki/og-image.png',
   themeColor: '#ff6a00',
 

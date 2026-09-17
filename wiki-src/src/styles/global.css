@@ -1,59 +1,63 @@
 /* =========================================================
-   Elysium Wiki — identidade visual
-   Papel de pergaminho + tinta + selo vermelho (tema claro)
-   Noite de tinta + brasa de chakra (tema escuro)
+   Wiki NTO 2D — identidade visual
+   Ink ninja + chakra laranja (alinhado ao site do jogo)
    ========================================================= */
 
 :root {
-  --bg: #f5efe4;
-  --bg-elev: #fffaf2;
-  --surface: #fbf6ec;
-  --surface-2: #efe5d4;
-  --border: #e0d2bb;
-  --text: #221c16;
-  --text-soft: #54493d;
-  --muted: #7d6f5e;
-  --accent: #b8321a;
-  --accent-strong: #8f2412;
-  --accent-soft: #f7ddd3;
+  --bg: #0c0d10;
+  --bg-elev: #14161b;
+  --surface: #171a20;
+  --surface-2: #1e232b;
+  --border: #2a303a;
+  --text: #f2eee6;
+  --text-soft: #c4bbb0;
+  --muted: #8f877c;
+  --accent: #ff6a00;
+  --accent-strong: #ff8533;
+  --accent-soft: rgba(255, 106, 0, 0.14);
+  --on-accent: #140a02;
+  --link: #ff8a3d;
+  --gold: #e0b45a;
+  --info: #6aa8e0;
+  --tip: #4fbf7a;
+  --warn: #e5a955;
+  --pending: #9b8fd4;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.28);
+  --radius: 12px;
+  --header-h: 68px;
+  --sidebar-w: 288px;
+  --content-max: 780px;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --font-display: 'Oxanium', 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f3f1ec;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ebe7e0;
+  --border: #ddd6cb;
+  --text: #16130f;
+  --text-soft: #4a433a;
+  --muted: #756b5e;
+  --accent: #e85a00;
+  --accent-strong: #c44a00;
+  --accent-soft: rgba(232, 90, 0, 0.12);
   --on-accent: #ffffff;
-  --link: #9c2b15;
-  --gold: #a87a22;
+  --link: #c44a00;
+  --gold: #9a6f1a;
   --info: #265a8c;
   --tip: #2d7547;
   --warn: #9a5c12;
   --pending: #6250a0;
-  --shadow: 0 1px 2px rgba(34, 28, 22, 0.06), 0 8px 24px rgba(34, 28, 22, 0.08);
-  --radius: 14px;
-  --header-h: 64px;
-  --sidebar-w: 288px;
-  --content-max: 780px;
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  --shadow: 0 1px 2px rgba(22, 19, 15, 0.06), 0 10px 28px rgba(22, 19, 15, 0.08);
   color-scheme: light;
 }
 
+/* compat: tema claro antigo usava data-theme=light; escuro é o padrão (sem atributo ou dark) */
 [data-theme='dark'] {
-  --bg: #0f1113;
-  --bg-elev: #16191d;
-  --surface: #1a1e23;
-  --surface-2: #232830;
-  --border: #2f353e;
-  --text: #ece5d8;
-  --text-soft: #c2b9aa;
-  --muted: #938a7d;
-  --accent: #ff6b3d;
-  --accent-strong: #ff8d66;
-  --accent-soft: #3b1f16;
-  --on-accent: #1a0c07;
-  --link: #ff9c77;
-  --gold: #e0b45a;
-  --info: #7ab0e6;
-  --tip: #6cc794;
-  --warn: #e5a955;
-  --pending: #b3a4f0;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 10px 28px rgba(0, 0, 0, 0.35);
   color-scheme: dark;
 }
 
@@ -144,7 +148,7 @@ h4 {
   gap: 8px;
   min-height: 46px;
   padding: 0 22px;
-  border-radius: 999px;
+  border-radius: 10px;
   font-weight: 650;
   text-decoration: none;
   border: 1.5px solid transparent;
@@ -211,8 +215,13 @@ h4 {
   margin-right: auto;
   min-width: 0;
 }
-.brand img {
+.brand img,
+.brand__logo {
   flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(255, 106, 0, 0.25));
 }
 .brand__text {
   display: flex;
@@ -222,16 +231,19 @@ h4 {
 }
 .brand__text strong {
   font-family: var(--font-display);
-  font-size: 1.12rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .brand__text small {
   color: var(--accent);
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 .top-nav {
@@ -491,52 +503,59 @@ body.drawer-open {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  border-radius: 24px;
-  padding: clamp(32px, 7vw, 84px) clamp(22px, 6vw, 72px);
-  color: #f8ecdc;
+  border-radius: 18px;
+  padding: clamp(36px, 6vw, 72px) clamp(22px, 5vw, 56px);
+  text-align: center;
+  color: #f2eee6;
   background:
-    radial-gradient(1200px 400px at 110% -10%, rgba(255, 120, 60, 0.35), transparent 60%),
-    radial-gradient(700px 380px at -10% 120%, rgba(184, 50, 26, 0.45), transparent 60%),
-    linear-gradient(140deg, #16110e 0%, #25140e 48%, #4d170c 100%);
+    radial-gradient(900px 420px at 50% -20%, rgba(255, 106, 0, 0.28), transparent 55%),
+    radial-gradient(600px 320px at 100% 100%, rgba(46, 139, 87, 0.12), transparent 50%),
+    linear-gradient(165deg, #0a0b0e 0%, #141018 45%, #1a100c 100%);
+  border: 1px solid rgba(255, 106, 0, 0.18);
   box-shadow: var(--shadow);
+  animation: heroIn 0.9s ease-out both;
 }
 .hero::before {
-  /* padrão de ondas (seigaiha) desenhado em SVG, original */
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.12;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23f8ecdc' stroke-width='1.2'%3E%3Cpath d='M0 28a28 28 0 0 1 56 0M8 28a20 20 0 0 1 40 0M16 28a12 12 0 0 1 24 0M24 28a4 4 0 0 1 8 0'/%3E%3Cpath d='M-28 14a28 28 0 0 1 56 0M28 14a28 28 0 0 1 56 0'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23f8ecdc' stroke-width='1.2'%3E%3Cpath d='M0 28a28 28 0 0 1 56 0M8 28a20 20 0 0 1 40 0M16 28a12 12 0 0 1 24 0M24 28a4 4 0 0 1 8 0'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 56px 28px;
-  -webkit-mask-image: linear-gradient(100deg, transparent 20%, #000 70%);
-  mask-image: linear-gradient(100deg, transparent 20%, #000 70%);
 }
 .hero::after {
-  content: '忍';
+  content: '';
   position: absolute;
-  right: -0.08em;
-  bottom: -0.28em;
+  inset: auto -10% -40% -10%;
+  height: 55%;
   z-index: -1;
-  font-family: var(--font-display);
-  font-size: clamp(12rem, 34vw, 26rem);
-  line-height: 1;
-  color: rgba(255, 140, 90, 0.1);
+  background: radial-gradient(ellipse at center, rgba(255, 106, 0, 0.15), transparent 70%);
   pointer-events: none;
+}
+.hero__logo {
+  display: block;
+  width: min(72vw, 340px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 8px 28px rgba(255, 106, 0, 0.35));
+  animation: logoFloat 5s ease-in-out infinite;
 }
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin: 0 0 14px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
+  font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--accent-strong);
 }
 .hero__title {
   margin: 0;
@@ -546,52 +565,91 @@ body.drawer-open {
   max-width: 14ch;
 }
 .hero__lead {
-  max-width: 56ch;
-  margin: 18px 0 28px;
-  font-size: clamp(1.02rem, 2.2vw, 1.22rem);
-  color: #ecdcc6;
+  max-width: 48ch;
+  margin: 0 auto 28px;
+  font-size: clamp(1.02rem, 2.2vw, 1.18rem);
+  color: #d9d0c4;
+  line-height: 1.55;
 }
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
 }
 .hero .btn--primary {
-  background: #ff6b3d;
-  color: #1a0c07;
+  background: linear-gradient(135deg, #ff6a00, #ff8533);
+  color: #140a02;
+  border: none;
 }
 .hero .btn--primary:hover {
-  background: #ff875f;
+  background: linear-gradient(135deg, #ff8533, #ff9a55);
+}
+.hero .btn--ghost {
+  color: #f2eee6;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+.hero .btn--ghost:hover {
+  border-color: #ff6a00;
+  color: #ff8533;
+  background: rgba(255, 106, 0, 0.1);
 }
 .hero__search {
   position: relative;
   max-width: 520px;
-  margin-top: 28px;
+  margin: 28px auto 0;
 }
 .hero__search input {
   width: 100%;
   height: 52px;
   padding: 0 18px 0 46px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.35);
   color: #fff6ea;
   font: inherit;
 }
 .hero__search input::placeholder {
-  color: #d8c4ad;
+  color: #a89f93;
 }
 .hero__search input:focus {
   outline: none;
-  border-color: #ff8d66;
-  background: rgba(255, 255, 255, 0.12);
+  border-color: #ff6a00;
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.2);
 }
 .hero__search svg {
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #d8c4ad;
+  color: #a89f93;
+}
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .hero__logo {
+    animation: none;
+  }
 }
 
 .home-section {
@@ -1343,6 +1401,16 @@ body.drawer-open {
   display: flex;
   gap: 14px;
   align-items: flex-start;
+}
+.site-footer__logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 4px 12px rgba(255, 106, 0, 0.3));
+}
+.site-footer__brand strong {
+  font-family: var(--font-display);
 }
 .site-footer__brand p {
   margin: 4px 0 0;

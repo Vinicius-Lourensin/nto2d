@@ -46,6 +46,9 @@ const ogImage = new URL(image, base).href;
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content={SITE.themeColor} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="icon" href="/wiki/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/wiki/apple-touch-icon.png" />
     <link rel="sitemap" href="/wiki/sitemap.xml" />
@@ -68,9 +71,9 @@ const ogImage = new URL(image, base).href;
 
     <script is:inline>
       (function () {
-        var t = 'light';
+        var t = 'dark';
         try {
-          t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
         } catch (e) {}
         document.documentElement.dataset.theme = t;
       })();
