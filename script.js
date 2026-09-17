@@ -7,7 +7,7 @@
 // CONFIGURAÇÃO - Fácil de editar
 // ============================================
 
-const DISCORD_LINK = "COLOCAR_LINK_DISCORD_AQUI";
+const DISCORD_LINK = "https://discord.gg/WCmQUBjX9G";
 
 // ============================================
 // Jogo em desenvolvimento - Jogar, Criar Conta, Baixar
