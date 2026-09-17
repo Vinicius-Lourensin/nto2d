@@ -58,7 +58,7 @@ function initDiscord() {
 
 function initScrollAnimations() {
     const sections = document.querySelectorAll(
-        ".promo-donate, .sobre, .como-comecar, .screenshots, .discord, .cta-final"
+        ".promo-donate, .sobre, .como-comecar, .discord, .cta-final"
     );
 
     const observerOptions = {
