@@ -14,7 +14,7 @@ export const SITE = {
   playUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
   downloadUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
   discordUrl: 'https://discord.gg/WCmQUBjX9G',
-  whatsappUrl: 'https://wa.me/557192339308',
+  whatsappUrl: 'https://wa.me/557192339308?text=Ol%C3%A1%2C%20estou%20jogando%20o%20Naruto%202D%20e%20gostaria%20de%20tirar%20algumas%20duvidas',
   whatsappLabel: '+55 71 9233-9308',
   social: {
     youtube: '',

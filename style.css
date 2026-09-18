@@ -185,6 +185,24 @@ body::after {
     height: 18px;
 }
 
+.btn-whatsapp-hero {
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp-hero:hover {
+    background: #1ebe57;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.45);
+    color: #fff;
+}
+
+.btn-whatsapp-hero .whatsapp-icon {
+    width: 18px;
+    height: 18px;
+}
+
 .btn-large {
     min-height: 3.35rem;
     padding: 1rem 2.25rem;
@@ -509,69 +527,6 @@ body::after {
 
 .footer-whatsapp:hover {
     color: #25d366;
-}
-
-/* ---------- WhatsApp flutuante ---------- */
-.whatsapp-float {
-    position: fixed;
-    right: 1.25rem;
-    bottom: 1.25rem;
-    z-index: 50;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    min-height: 3.25rem;
-    padding: 0.7rem 1rem 0.7rem 0.85rem;
-    background: #25d366;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 999px;
-    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.whatsapp-float:hover {
-    transform: translateY(-3px);
-    background: #1ebe57;
-    box-shadow: 0 14px 34px rgba(37, 211, 102, 0.45);
-    color: #fff;
-}
-
-.whatsapp-float .whatsapp-icon {
-    width: 26px;
-    height: 26px;
-    flex: 0 0 auto;
-}
-
-.whatsapp-float__label {
-    white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-    .whatsapp-float__label {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    .whatsapp-float {
-        width: 3.4rem;
-        height: 3.4rem;
-        min-height: 0;
-        padding: 0;
-        justify-content: center;
-        border-radius: 50%;
-    }
 }
 
 /* ---------- MOTION ---------- */
