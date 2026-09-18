@@ -11,6 +11,7 @@ const official = [
   SITE.playUrl && { label: 'Jogar agora', href: SITE.playUrl },
   SITE.downloadUrl && { label: 'Download', href: SITE.downloadUrl },
   SITE.discordUrl && { label: 'Discord', href: SITE.discordUrl },
+  SITE.whatsappUrl && { label: `WhatsApp ${SITE.whatsappLabel}`, href: SITE.whatsappUrl },
   ...socials,
 ].filter(Boolean) as { label: string; href: string }[];
 

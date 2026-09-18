@@ -14,6 +14,8 @@ export const SITE = {
   playUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
   downloadUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
   discordUrl: 'https://discord.gg/WCmQUBjX9G',
+  whatsappUrl: 'https://wa.me/557192339308',
+  whatsappLabel: '+55 71 9233-9308',
   social: {
     youtube: '',
     instagram: '',
