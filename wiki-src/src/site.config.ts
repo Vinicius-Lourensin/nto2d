@@ -11,8 +11,8 @@ export const SITE = {
   siteUrl: 'https://naruto2d.online',
 
   officialUrl: 'https://naruto2d.online',
-  playUrl: 'https://naruto2d.online',
-  downloadUrl: 'https://naruto2d.online',
+  playUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
+  downloadUrl: 'https://www.mediafire.com/file/rrqtgn3c9oww0o7/Naruto+2D.exe/file',
   discordUrl: 'https://discord.gg/WCmQUBjX9G',
   social: {
     youtube: '',

@@ -10,20 +10,6 @@
 const DISCORD_LINK = "https://discord.gg/WCmQUBjX9G";
 
 // ============================================
-// Jogo em desenvolvimento - Jogar, Baixar
-// ============================================
-
-function initEmDesenvolvimento() {
-    const btns = document.querySelectorAll(".btn-em-desenvolvimento");
-    btns.forEach(function (btn) {
-        btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            alert("Jogo em desenvolvimento");
-        });
-    });
-}
-
-// ============================================
 // Criar conta - aviso
 // ============================================
 
@@ -99,7 +85,6 @@ function initScrollAnimations() {
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
-    initEmDesenvolvimento();
     initCriarConta();
     initDiscord();
     initScrollAnimations();
