@@ -157,6 +157,20 @@ body::after {
     transform: translateY(-2px);
 }
 
+.btn-donate {
+    background: linear-gradient(135deg, #f5b301, #e89a00);
+    color: #1a1200;
+    border-color: transparent;
+    box-shadow: 0 8px 28px rgba(245, 179, 1, 0.4);
+}
+
+.btn-donate:hover {
+    background: linear-gradient(135deg, #ffc933, #f5b301);
+    color: #1a1200;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(245, 179, 1, 0.55);
+}
+
 .btn-wiki {
     background: rgba(255, 255, 255, 0.06);
     color: var(--texto);
@@ -260,6 +274,11 @@ a.btn.btn-whatsapp-hero .whatsapp-icon,
     color: var(--texto-suave);
     font-size: 0.98rem;
     font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.promo-donate .btn-donate {
+    margin-top: 0.25rem;
 }
 
 .promo-donate-banner {
