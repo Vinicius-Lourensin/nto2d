@@ -172,12 +172,14 @@ body::after {
 .btn-discord-hero {
     background: var(--discord);
     color: #fff;
-    box-shadow: 0 8px 28px rgba(88, 101, 242, 0.35);
+    border-color: transparent;
+    box-shadow: 0 8px 28px rgba(88, 101, 242, 0.45);
 }
 
 .btn-discord-hero:hover {
     background: #6d7af5;
     transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(88, 101, 242, 0.55);
 }
 
 .btn-discord-hero .discord-icon {
@@ -188,13 +190,14 @@ body::after {
 .btn-whatsapp-hero {
     background: #25d366;
     color: #fff;
-    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+    border-color: transparent;
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
 }
 
 .btn-whatsapp-hero:hover {
-    background: #1ebe57;
+    background: #20bd5a;
     transform: translateY(-2px);
-    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.55);
     color: #fff;
 }
 
@@ -209,10 +212,10 @@ body::after {
     font-size: 1.05rem;
 }
 
-/* ---------- PROMO ---------- */
+/* ---------- PROMO / CASH ---------- */
 .promo-donate {
     margin-top: 2rem;
-    max-width: 640px;
+    max-width: 420px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1.25rem;
@@ -226,27 +229,26 @@ body::after {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--laranja-suave);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
-.promo-donate-banner {
-    overflow: hidden;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 106, 0, 0.25);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.promo-donate-banner img {
-    width: 100%;
-    height: auto;
-    display: block;
+.promo-donate-rate {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--texto);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.35rem;
 }
 
 .promo-donate-desc {
-    margin-top: 0.85rem;
     color: var(--texto-suave);
     font-size: 0.98rem;
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.promo-donate-banner {
+    display: none;
 }
 
 /* ---------- SECTIONS ---------- */
@@ -513,20 +515,100 @@ body::after {
     color: var(--laranja-suave);
 }
 
-.footer-whatsapp {
-    display: inline-flex;
+/* ---------- Modal criar conta ---------- */
+.modal[hidden] {
+    display: none !important;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: center;
+    padding: 1.25rem;
 }
 
-.footer-whatsapp .whatsapp-icon {
-    width: 16px;
-    height: 16px;
-    color: #25d366;
+.modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
 }
 
-.footer-whatsapp:hover {
-    color: #25d366;
+.modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 560px);
+    max-height: min(92vh, 900px);
+    overflow: auto;
+    background: #12141a;
+    border: 1px solid rgba(255, 106, 0, 0.28);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    animation: rise 0.35s ease-out both;
+}
+
+.modal__close {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.7rem;
+    z-index: 2;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal__close:hover {
+    background: rgba(255, 106, 0, 0.85);
+}
+
+.modal__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid var(--linha);
+}
+
+.modal__body {
+    padding: 1.25rem 1.35rem 1.5rem;
+    text-align: center;
+}
+
+.modal__body h2 {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    margin-bottom: 0.65rem;
+    color: var(--texto);
+}
+
+.modal__body p {
+    color: var(--texto-suave);
+    font-size: 0.98rem;
+    margin-bottom: 0.55rem;
+}
+
+.modal__body strong {
+    color: var(--laranja-suave);
+}
+
+.modal__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.15rem;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 /* ---------- MOTION ---------- */
