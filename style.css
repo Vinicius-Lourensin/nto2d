@@ -187,23 +187,38 @@ body::after {
     height: 18px;
 }
 
-.btn-whatsapp-hero {
+a.btn.btn-whatsapp-hero,
+.btn.btn-whatsapp-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
     background: #25d366;
-    color: #fff;
+    background-image: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    border: none;
     border-color: transparent;
-    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.5);
+    text-decoration: none;
 }
 
-.btn-whatsapp-hero:hover {
+a.btn.btn-whatsapp-hero:hover,
+a.btn.btn-whatsapp-hero:focus-visible,
+.btn.btn-whatsapp-hero:hover {
     background: #20bd5a;
+    background-image: linear-gradient(135deg, #2fe574 0%, #25d366 100%);
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.55);
-    color: #fff;
+    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.6);
 }
 
-.btn-whatsapp-hero .whatsapp-icon {
-    width: 18px;
-    height: 18px;
+a.btn.btn-whatsapp-hero .whatsapp-icon,
+.btn.btn-whatsapp-hero .whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    fill: #ffffff;
+    color: #ffffff;
 }
 
 .btn-large {
